@@ -1,3 +1,28 @@
 <resources>
-    <string name="app_name">chessMobileProject</string>
+    <string name="app_name">Chess.com Player Browser</string>
+
+
+
+    <string name="player_title_label">Player</string>
+    <string name="chess_daily_label">Chess Daily Stats:</string>
+    <string name="chess960_daily_label">Chess960 Daily Stats:</string>
+    <string name="chess_rapid_label">Rapid Chess Stats:</string>
+    <string name="chess_bullet_label">Bullet Chess Stats:</string>
+    <string name="chess_blitz_label">Blitz Chess Stats:</string>
+    <string name="fide_label">Fide: </string>
+    <string name="tactics_label">Tactics Stats:</string>
+
+    <string name="last">Last Game</string>
+    <string name="best">Best Game</string>
+    <string name="record">All Time Records</string>
+
+    <string name="rating">Rating:\t</string>
+    <string name="date">Date:\t</string>
+    <string name="rd">RD:\t</string>
+    <string name="game">Game URL:\t</string>
+    <string name="time_per_move">Time Per Move:\t</string>
+    <string name="timeout_percent">Timeout Percent:\t</string>
+    <string name="wins">Wins:\t</string>
+    <string name="losses">Losses:\t</string>
+    <string name="draws">Draws:\t</string>
 </resources>

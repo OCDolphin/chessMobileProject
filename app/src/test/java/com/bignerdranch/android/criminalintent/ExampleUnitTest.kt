@@ -1,4 +1,4 @@
-package com.example.chessmobileproject
+package com.bignerdranch.android.criminalintent
 
 import org.junit.Test
 

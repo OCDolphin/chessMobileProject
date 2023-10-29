@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "chessMobileProject"
+rootProject.name = "CriminalIntent"
 include(":app")
  
