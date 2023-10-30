@@ -1,5 +1,6 @@
 package com.bignerdranch.android.criminalintent
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bignerdranch.android.criminalintent.api.ApiHelper
@@ -23,11 +24,11 @@ class PlayerListViewModel : ViewModel() {
 
   init {
     viewModelScope.launch {
-      val _results =
+      val results =
         helper.getTitledPlayers("GM").body()?.players
+      Log.d(TAG, results.toString())
 
-      _players.value = _results?.map {name ->
-        // val player = helper.getPlayerByName(name).body()!!
+      _players.value = results?.map {name ->
         ChessPlayer(
           username = name
         )

@@ -3,25 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/crimeListFragment">
+  app:startDestination="@id/playerListFragment">
+  <fragment
+    android:id="@+id/playerListFragment"
+    android:name="com.bignerdranch.android.criminalintent.PlayerListFragment"
+    android:label="PlayerListFragment"
+    tools:layout="@layout/fragment_player_list">
+    <action
+      android:id="@+id/action_playerListFragment_to_playerDetailFragment"
+      app:destination="@id/playerDetailFragment" />
+  </fragment>
 
-    <fragment
-        android:id="@+id/crimeListFragment"
-        android:name="com.bignerdranch.android.criminalintent.PlayerListFragment"
-        android:label="CrimeListFragment"
-        tools:layout="@layout/fragment_player_list">
-        <action
-            android:id="@+id/show_crime_detail"
-            app:destination="@id/crimeDetailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/crimeDetailFragment"
-        android:name="com.bignerdranch.android.criminalintent.PlayerDetailFragment"
-        android:label="CrimeDetailFragment"
-        tools:layout="@layout/fragment_player_detail" >
-        <argument
-            android:name="username"
-            app:argType="string" />
-    </fragment>
-
+  <fragment
+    android:id="@+id/playerDetailFragment"
+    android:name="com.bignerdranch.android.criminalintent.PlayerDetailFragment"
+    android:label="PlayerDetailFragment"
+    tools:layout="@layout/fragment_player_detail"
+    >
+    <argument
+      android:name="username"
+      app:argType="string" />
+  </fragment>
 </navigation>

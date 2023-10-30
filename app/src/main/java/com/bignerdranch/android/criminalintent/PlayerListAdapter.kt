@@ -1,10 +1,13 @@
 package com.bignerdranch.android.criminalintent
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bignerdranch.android.criminalintent.database.ChessPlayer
 import com.bignerdranch.android.criminalintent.databinding.ListItemPlayerBinding
+
+private const val TAG = "PlayerHolder"
 
 class PlayerHolder(
     private val binding: ListItemPlayerBinding
@@ -13,9 +16,11 @@ class PlayerHolder(
     fun bind(chessPlayer: ChessPlayer, onPlayerClicked: (username: String) -> Unit) {
       binding.playerUser.setText(chessPlayer.username)
 
+
       binding.root.setOnClickListener {
         onPlayerClicked(chessPlayer.username)
       }
+      Log.d(TAG, "bind called")
     }
 }
 

@@ -1,6 +1,7 @@
 package com.bignerdranch.android.criminalintent
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.criminalintent.databinding.FragmentPlayerListBinding
 import kotlinx.coroutines.launch
 
-private const val TAG = "CrimeListFragment"
+private const val TAG = "PlayerListFragment"
 
 class PlayerListFragment : Fragment() {
 
@@ -51,12 +52,14 @@ class PlayerListFragment : Fragment() {
                 playerListViewModel.players.collect { player ->
                     binding.playerRecyclerView.adapter = PlayerListAdapter(player) { playerUser ->
                         findNavController().navigate(
-                            PlayerListFragmentDirections.showCrimeDetail(playerUser)
+                            PlayerListFragmentDirections.actionPlayerListFragmentToPlayerDetailFragment(playerUser)
                         )
-                    }
-                }
+                      }
+                  }
             }
         }
+
+        Log.d(TAG, "onViewCreated called")
     }
 
     override fun onDestroyView() {
