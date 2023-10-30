@@ -5,4 +5,4 @@ import androidx.room.PrimaryKey
 import com.bignerdranch.android.criminalintent.api.ChessPlayerResult
 
 @Entity
-class ChessPlayer(@PrimaryKey val username: String)
+data class ChessPlayer(@PrimaryKey val username: String)

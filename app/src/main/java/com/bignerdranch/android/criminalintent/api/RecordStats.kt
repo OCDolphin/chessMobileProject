@@ -1,5 +1,8 @@
 package com.bignerdranch.android.criminalintent.api
 
+import androidx.room.Entity
+
+@Entity
 data class RecordStats(
   val win: Int,
   val loss: Int,

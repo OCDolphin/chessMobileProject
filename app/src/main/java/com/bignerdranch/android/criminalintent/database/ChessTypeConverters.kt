@@ -1,6 +1,7 @@
 package com.bignerdranch.android.criminalintent.database
 
 import androidx.room.TypeConverter
+import com.bignerdranch.android.criminalintent.api.ChessPlayerResult
 import java.util.Date
 
 class ChessTypeConverters {
@@ -13,5 +14,6 @@ class ChessTypeConverters {
     fun toDate(millisSinceEpoch: Long): Date {
         return Date(millisSinceEpoch)
     }
+
 
 }

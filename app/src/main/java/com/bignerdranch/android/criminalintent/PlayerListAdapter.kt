@@ -10,13 +10,18 @@ class PlayerHolder(
     private val binding: ListItemPlayerBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(chessPlayer: ChessPlayer, onCrimeClicked: (crimeId: String) -> Unit) {
+    fun bind(chessPlayer: ChessPlayer, onPlayerClicked: (username: String) -> Unit) {
+      binding.playerUser.setText(chessPlayer.username)
+
+      binding.root.setOnClickListener {
+        onPlayerClicked(chessPlayer.username)
+      }
     }
 }
 
 class PlayerListAdapter(
   private val chessPlayers: List<ChessPlayer>,
-  private val onPlayerClicked: (crimeId: String) -> Unit
+  private val onPlayerClicked: (playerName: String) -> Unit
 ) : RecyclerView.Adapter<PlayerHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerHolder {
         val inflater = LayoutInflater.from(parent.context)
