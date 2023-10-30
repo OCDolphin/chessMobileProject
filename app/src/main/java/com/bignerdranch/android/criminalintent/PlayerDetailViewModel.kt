@@ -2,41 +2,39 @@ package com.bignerdranch.android.criminalintent
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
+import com.bignerdranch.android.criminalintent.database.ChessPlayer
 
-class CrimeDetailViewModel(cPlayer: String): ViewModel() {
-    private val chessPlayerRepository = ChessPlayerRepository.get()
+class PlayerDetailViewModel(val player: ChessPlayer) : ViewModel() {
 
-    private val _chessPlayer: MutableStateFlow<ChessPlayer?> = MutableStateFlow(null)
-    val chessPlayer: StateFlow<ChessPlayer?> = _chessPlayer.asStateFlow()
 
-    init {
-        viewModelScope.launch {
-            _chessPlayer.value = chessPlayerRepository.getCrime(cPlayer)
-        }
-    }
+//    private val chessPlayerRepository = ChessRepository.get()
 
-    fun updateCrime(onUpdate: (ChessPlayer) -> ChessPlayer) {
-        _chessPlayer.update { oldCrime ->
-            oldCrime?.let {
-                onUpdate(it)
-            }
-        }
-    }
+//    private val _chessPlayer: MutableStateFlow<ChessPlayer?> = MutableStateFlow(null)
+//    val chessPlayer: StateFlow<ChessPlayer?> = _chessPlayer.asStateFlow()
 
-    override fun onCleared() {
-        super.onCleared()
-        chessPlayer.value?.let { chessPlayerRepository.updateCrime(it) }
-    }
+  init {
+//        viewModelScope.launch {
+//            _chessPlayer.value = chessPlayerRepository.getCrime(cPlayer)
+//        }
+  }
+
+//    fun updatePlayer(onUpdate: (ChessPlayer) -> ChessPlayer) {
+////        _chessPlayer.update { oldCrime ->
+////            oldCrime?.let {
+////                onUpdate(it)
+////            }
+////        }
+//    }
+
+  override fun onCleared() {
+    super.onCleared()
+//        chessPlayer.value?.let { chessPlayerRepository.updateCrime(it) }
+  }
 }
 
-class CrimeDetailViewModelFactory(private val cPlayer: String) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return CrimeDetailViewModel(cPlayer) as T
-    }
+class ChessPlayerDetailViewModelFactory(private val player: ChessPlayer) :
+  ViewModelProvider.Factory {
+  override fun <T : ViewModel> create(modelClass: Class<T>): T {
+    return PlayerDetailViewModel(player) as T
+  }
 }

@@ -9,7 +9,7 @@
         android:id="@+id/crimeListFragment"
         android:name="com.bignerdranch.android.criminalintent.PlayerListFragment"
         android:label="CrimeListFragment"
-        tools:layout="@layout/fragment_crime_list">
+        tools:layout="@layout/fragment_player_list">
         <action
             android:id="@+id/show_crime_detail"
             app:destination="@id/crimeDetailFragment" />
@@ -18,7 +18,7 @@
         android:id="@+id/crimeDetailFragment"
         android:name="com.bignerdranch.android.criminalintent.PlayerDetailFragment"
         android:label="CrimeDetailFragment"
-        tools:layout="@layout/fragment_crime_detail" >
+        tools:layout="@layout/fragment_player_detail" >
         <argument
             android:name="username"
             app:argType="string" />

@@ -10,55 +10,51 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
-import com.bignerdranch.android.criminalintent.databinding.FragmentCrimeDetailBinding
+import com.bignerdranch.android.criminalintent.database.ChessPlayer
+import com.bignerdranch.android.criminalintent.databinding.FragmentPlayerDetailBinding
 import kotlinx.coroutines.launch
 
 class PlayerDetailFragment : Fragment() {
 
-    private var _binding: FragmentCrimeDetailBinding? = null
-    private val binding
-        get() = checkNotNull(_binding) {
-            "Cannot access binding because it is null. Is the view visible?"
-        }
-
-    private val args: PlayerDetailFragmentArgs by navArgs()
-
-    private val crimeDetailViewModel: CrimeDetailViewModel by viewModels {
-        CrimeDetailViewModelFactory(args.username)
+  private var _binding: FragmentPlayerDetailBinding? = null
+  private val binding
+    get() = checkNotNull(_binding) {
+      "Cannot access binding because it is null. Is the view visible?"
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding =
-            FragmentCrimeDetailBinding.inflate(inflater, container, false)
-        return binding.root
+  private val args: PlayerDetailFragmentArgs by navArgs()
+
+  private val playerDetailViewModel: PlayerDetailViewModel by viewModels()
+
+  override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View {
+    _binding =
+      FragmentPlayerDetailBinding.inflate(inflater, container, false)
+    return binding.root
+  }
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+
+
+    viewLifecycleOwner.lifecycleScope.launch {
+      viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+      }
     }
+  }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+  override fun onDestroyView() {
+    super.onDestroyView()
+    _binding = null
+  }
 
+  private fun updateUi(chessPlayer: ChessPlayer) {
+    binding.apply {
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                crimeDetailViewModel.chessPlayer.collect { crime ->
-                    crime?.let { updateUi(it) }
-                }
-            }
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    private fun updateUi(chessPlayer: ChessPlayer) {
-        binding.apply {
-
-            //Need to populate fragment_player_view when finished
+      //Need to populate fragment_player_view when finished
 
 //            if (crimeTitle.text.toString() != chessPlayer.title) {
 //                crimeTitle.setText(chessPlayer.title)
@@ -70,6 +66,6 @@ class PlayerDetailFragment : Fragment() {
 //                )
 //            }
 //            crimeSolved.isChecked = chessPlayer.isSolved
-        }
     }
+  }
 }

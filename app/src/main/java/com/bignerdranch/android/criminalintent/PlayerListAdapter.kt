@@ -3,35 +3,31 @@ package com.bignerdranch.android.criminalintent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bignerdranch.android.criminalintent.databinding.ListItemCrimeBinding
+import com.bignerdranch.android.criminalintent.database.ChessPlayer
+import com.bignerdranch.android.criminalintent.databinding.ListItemPlayerBinding
 
-class CrimeHolder(
-    private val binding: ListItemCrimeBinding
+class PlayerHolder(
+    private val binding: ListItemPlayerBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(chessPlayer: ChessPlayer, onCrimeClicked: (crimeId: String) -> Unit) {
-        binding.playerUser.text = chessPlayer.user
-
-        binding.root.setOnClickListener {
-            onCrimeClicked(chessPlayer.user)
-        }
     }
 }
 
-class CrimeListAdapter(
-    private val chessPlayers: List<ChessPlayer>,
-    private val onCrimeClicked: (crimeId: String) -> Unit
-) : RecyclerView.Adapter<CrimeHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CrimeHolder {
+class PlayerListAdapter(
+  private val chessPlayers: List<ChessPlayer>,
+  private val onPlayerClicked: (crimeId: String) -> Unit
+) : RecyclerView.Adapter<PlayerHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ListItemCrimeBinding.inflate(inflater, parent, false)
-        return CrimeHolder(binding)
+        val binding = ListItemPlayerBinding.inflate(inflater, parent, false)
+        return PlayerHolder(binding)
     }
 
     override fun getItemCount() = chessPlayers.size
 
-    override fun onBindViewHolder(holder: CrimeHolder, position: Int) {
+    override fun onBindViewHolder(holder: PlayerHolder, position: Int) {
         val crime = chessPlayers[position]
-        holder.bind(crime, onCrimeClicked)
+        holder.bind(crime, onPlayerClicked)
     }
 }

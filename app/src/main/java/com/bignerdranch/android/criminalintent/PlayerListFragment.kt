@@ -11,14 +11,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bignerdranch.android.criminalintent.databinding.FragmentCrimeListBinding
+import com.bignerdranch.android.criminalintent.databinding.FragmentPlayerListBinding
 import kotlinx.coroutines.launch
 
 private const val TAG = "CrimeListFragment"
 
 class PlayerListFragment : Fragment() {
 
-    private var _binding: FragmentCrimeListBinding? = null
+    private var _binding: FragmentPlayerListBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
             "Cannot access binding because it is null. Is the view visible?"
@@ -36,9 +36,9 @@ class PlayerListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCrimeListBinding.inflate(inflater, container, false)
+        _binding = FragmentPlayerListBinding.inflate(inflater, container, false)
 
-        binding.crimeRecyclerView.layoutManager = LinearLayoutManager(context)
+        binding.playerRecyclerView.layoutManager = LinearLayoutManager(context)
 
         return binding.root
     }
@@ -48,8 +48,8 @@ class PlayerListFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                playerListViewModel.crimes.collect { crimes ->
-                    binding.crimeRecyclerView.adapter = CrimeListAdapter(crimes) { playerUser ->
+                playerListViewModel.players.collect { player ->
+                    binding.playerRecyclerView.adapter = PlayerListAdapter(player) { playerUser ->
                         findNavController().navigate(
                             PlayerListFragmentDirections.showCrimeDetail(playerUser)
                         )
@@ -63,9 +63,4 @@ class PlayerListFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-
-
-
-
 }
