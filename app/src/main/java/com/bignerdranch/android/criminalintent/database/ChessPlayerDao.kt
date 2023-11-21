@@ -13,7 +13,7 @@ interface ChessPlayerDao {
     fun getPlayers(): Flow<List<ChessPlayer>>
 
     @Query("SELECT * FROM ChessPlayer WHERE username=(:username)")
-    suspend fun getPlayerByUsername(username: String): ChessPlayer
+    suspend fun getPlayerByUsername(username: String): ChessPlayer?
 
     @Update
     suspend fun updatePlayer(chessPlayer: ChessPlayer)

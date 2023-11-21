@@ -14,6 +14,4 @@ class ChessTypeConverters {
     fun toDate(millisSinceEpoch: Long): Date {
         return Date(millisSinceEpoch)
     }
-
-
 }

@@ -1,9 +1,12 @@
 package com.bignerdranch.android.criminalintent.api
 
-import androidx.room.Entity
+import android.os.Parcel
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+import kotlinx.serialization.Serializable
 
-@Entity
+@Parcelize
 data class TacticsStats(
   val highest: TacticsResult,
   val lowest: TacticsResult
-)
+): Parcelable

@@ -1,13 +1,14 @@
 package com.bignerdranch.android.criminalintent.api
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
+import kotlinx.serialization.Serializable
 import java.util.UUID
 
-@Entity
+@Parcelize
 data class ChessPlayerResult(
-  @PrimaryKey
-  val id: UUID,
   val chess_daily: ChessStats,
   val chess960_daily: ChessStats,
   val chess_rapid: ChessStats,
@@ -16,4 +17,4 @@ data class ChessPlayerResult(
   val fide: Int,
   val tactics: TacticsStats,
   val puzzle_rush: PuzzleRushStats
-)
+): Parcelable
