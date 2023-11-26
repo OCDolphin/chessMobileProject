@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bignerdranch.android.criminalintent.databinding.GridItemSquareBinding
 import com.bignerdranch.android.criminalintent.databinding.ListItemPlayerBinding
 
-private const val LIGHT = 0x0;
-private const val DARK = 0x0;
+private const val LIGHT = 0x000000;
+private const val DARK = 0xFFFFFF;
 class ChessSquareHolder(
   private val binding: GridItemSquareBinding
 ): RecyclerView.ViewHolder(binding.root) {

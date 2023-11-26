@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.bignerdranch.android.criminalintent.api.ApiHelper
 import com.bignerdranch.android.criminalintent.api.ChessApi
 import com.bignerdranch.android.criminalintent.api.ChessPlayerResult
+import com.bignerdranch.android.criminalintent.api.GamesResult
 import com.bignerdranch.android.criminalintent.database.ChessDatabase
 import com.bignerdranch.android.criminalintent.database.ChessPlayer
 import kotlinx.coroutines.CoroutineScope
@@ -46,6 +47,12 @@ class ChessRepository private constructor(
 database.chessPlayerDao().addPlayer(chessPlayer = ChessPlayer(username = username, id = UUID.randomUUID()))
     }
     return apiResult
+  }
+
+  suspend fun getPlayerGames(username: String): GamesResult {
+    return checkNotNull(api.getPlayerGames(username).body()) {
+      "Can't find games of player [${username}]"
+    }
   }
 
   fun updatePlayer(chessPlayer: ChessPlayer) {

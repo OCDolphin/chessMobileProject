@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/game_thumbnail"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <TextView
+    android:id="@+id/game_thumbnail_players"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Player1 vs. Player2"
+    app:layout_constraintBottom_toTopOf="@id/game_thumbnail_site_date"
+    app:layout_constraintEnd_toEndOf="parent"
+    />
+
+    <TextView
+      android:id="@+id/game_thumbnail_site_date"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="N/A 0000.00.00"
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

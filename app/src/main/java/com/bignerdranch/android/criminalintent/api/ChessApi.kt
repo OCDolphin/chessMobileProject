@@ -11,4 +11,7 @@ interface ChessApi {
 
   @GET("player/{username}/stats")
   suspend fun getPlayerByName(@Path(value="username") username: String): Response<ChessPlayerResult>
+
+  @GET("player/{username}/games")
+  suspend fun getPlayerGames(@Path(value="username") username: String): Response<GamesResult>
 }

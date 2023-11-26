@@ -402,4 +402,14 @@
                 android:text="-1" />
         </LinearLayout>
     </LinearLayout>
+
+  <androidx.recyclerview.widget.RecyclerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:name="com.bignerdranch.android.criminalintent.GameDisplayFragment"
+    tools:context=".MainActivity" />
+
 </LinearLayout>

@@ -11,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import com.bignerdranch.android.criminalintent.api.ChessPlayerResult
 import com.bignerdranch.android.criminalintent.database.ChessPlayer
 import com.bignerdranch.android.criminalintent.databinding.FragmentPlayerDetailBinding
@@ -40,6 +41,7 @@ class PlayerDetailFragment : Fragment() {
   ): View {
     _binding =
       FragmentPlayerDetailBinding.inflate(inflater, container, false)
+    binding.fragmentContainer.layoutManager = GridLayoutManager(context, 3)
     return binding.root
   }
 
