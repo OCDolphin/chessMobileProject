@@ -1,9 +1,12 @@
 package com.bignerdranch.android.criminalintent.api
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import java.net.URL
 import java.util.Date
 import java.util.UUID
 
+@Parcelize
 data class GameResult(
   val url: URL,
   val pgn: String,
@@ -19,4 +22,4 @@ data class GameResult(
   val rules: String,
   val white: BlackWhiteGameStats,
   val black: BlackWhiteGameStats
-)
+): Parcelable

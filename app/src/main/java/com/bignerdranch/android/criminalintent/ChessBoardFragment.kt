@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bignerdranch.android.criminalintent.databinding.FragmentChessBoardBinding
 import com.bignerdranch.android.criminalintent.databinding.FragmentPlayerListBinding
@@ -18,8 +19,10 @@ class ChessBoardFragment: Fragment() {
       "Cannot access binding because it is null. Is the view visible?"
     }
 
+  private val args: ChessBoardFragmentArgs by navArgs()
+
   private val chessBoardViewModel: ChessBoardViewModel by viewModels() {
-    ChessBoardViewModelFactory(args.piecePositions)
+    ChessBoardViewModelFactory(args.game)
   }
   override fun onCreateView(
     inflater: LayoutInflater,

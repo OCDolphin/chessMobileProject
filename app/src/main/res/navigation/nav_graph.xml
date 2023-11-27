@@ -23,5 +23,16 @@
     <argument
       android:name="username"
       app:argType="string" />
+    <action
+      android:id="@+id/action_playerDetailFragment_to_chessBoardFragment"
+      app:destination="@id/chessBoardFragment" />
+  </fragment>
+  <fragment
+    android:id="@+id/chessBoardFragment"
+    android:name="com.bignerdranch.android.criminalintent.ChessBoardFragment"
+    android:label="ChessBoardFragment" >
+    <argument
+      android:name="game"
+      app:argType="com.bignerdranch.android.criminalintent.api.GameResult" />
   </fragment>
 </navigation>
