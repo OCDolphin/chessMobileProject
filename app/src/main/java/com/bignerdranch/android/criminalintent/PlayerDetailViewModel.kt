@@ -11,6 +11,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import retrofit2.create
+import java.text.DateFormat
+import java.time.format.DateTimeFormatter
+import java.util.Date
 
 private const val TAG = "PlayerDetailViewModel"
 class PlayerDetailViewModel(val username: String) : ViewModel() {
@@ -33,10 +36,23 @@ class PlayerDetailViewModel(val username: String) : ViewModel() {
   }
 
   suspend fun getPlayerGames(username: String){
-    _games.value = checkNotNull(api.getPlayerGames(username).body()) {
+    var current = checkNotNull(api.getPlayerCurrentGames(username).body()) {
       Log.d(TAG, "Failed to get player: [${username}]")
-      "Can't find games from player: [${username}]"
+      "Can't find current games from player: [${username}]"
     }
+    var monthlyArchive = checkNotNull(api.getPlayerMonthlyArchive(
+      username,
+      "2023",
+      "10"
+    ).body()) {
+      Log.d(TAG, "Failed to get player: [${username}]")
+      "Can't find monthly games from player: [${username}]"
+    }
+
+    current.games = current.games + monthlyArchive.games
+    _games.value = current
+
+    Log.d(TAG, "Got games from user: [%${username}]:[${_games.value}]")
   }
 
   suspend fun getPlayerStats(username: String) {

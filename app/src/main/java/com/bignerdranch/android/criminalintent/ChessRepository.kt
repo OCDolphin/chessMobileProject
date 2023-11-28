@@ -50,7 +50,7 @@ database.chessPlayerDao().addPlayer(chessPlayer = ChessPlayer(username = usernam
   }
 
   suspend fun getPlayerGames(username: String): GamesResult {
-    return checkNotNull(api.getPlayerGames(username).body()) {
+    return checkNotNull(api.getPlayerCurrentGames(username).body()) {
       "Can't find games of player [${username}]"
     }
   }
