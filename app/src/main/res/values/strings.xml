@@ -25,4 +25,6 @@
     <string name="wins">Wins:\t</string>
     <string name="losses">Losses:\t</string>
     <string name="draws">Draws:\t</string>
+    <string name="next_move">Next Move</string>
+    <string name="prev_move">Prev Move</string>
 </resources>
