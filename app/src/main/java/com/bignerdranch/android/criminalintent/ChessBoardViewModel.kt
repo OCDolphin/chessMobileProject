@@ -8,6 +8,7 @@ import com.github.bhlangonijr.chesslib.pgn.GameLoader
 
 class ChessBoardViewModel(private val game: GameResult): ViewModel() {
   private val pgn = GameLoader.loadNextGame(mutableListOf(game.pgn).iterator())
+  private var currentMove = 0
   private val board = Board()
 
   fun loadFromFen(fen: String) {
@@ -16,6 +17,18 @@ class ChessBoardViewModel(private val game: GameResult): ViewModel() {
 
   fun doMove(san: String) {
     board.doMove(san)
+  }
+
+  fun nextMove() {
+    board.doMove(pgn.currentMoveList[currentMove++])
+  }
+
+  fun prevMove() {
+    board.undoMove()
+  }
+
+  fun board(): Board{
+    return board.clone()
   }
 }
 

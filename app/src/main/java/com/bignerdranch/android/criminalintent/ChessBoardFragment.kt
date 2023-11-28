@@ -3,6 +3,9 @@ package com.bignerdranch.android.criminalintent
 import android.os.Bundle
 import android.text.Layout
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -28,6 +31,33 @@ class ChessBoardFragment: Fragment() {
   private val chessBoardViewModel: ChessBoardViewModel by viewModels() {
     ChessBoardViewModelFactory(args.game)
   }
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setHasOptionsMenu(true)
+  }
+
+  override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    super.onCreateOptionsMenu(menu, inflater)
+    inflater.inflate(R.menu.fragment_chess_board, menu)
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    return when(item.itemId) {
+      R.id.next_move -> {
+        chessBoardViewModel.nextMove()
+        updateUi(chessBoardViewModel.board())
+        true
+      }
+      R.id.prev_move -> {
+        chessBoardViewModel.prevMove()
+        updateUi(chessBoardViewModel.board())
+        true
+      }
+      else -> super.onOptionsItemSelected(item)
+    }
+  }
+
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
