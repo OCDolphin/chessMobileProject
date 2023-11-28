@@ -10,11 +10,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bignerdranch.android.criminalintent.api.ChessPlayerResult
 import com.bignerdranch.android.criminalintent.database.ChessPlayer
 import com.bignerdranch.android.criminalintent.databinding.FragmentPlayerDetailBinding
+import com.github.bhlangonijr.chesslib.Board
 import kotlinx.coroutines.launch
 import java.lang.IllegalStateException
 import java.text.DateFormat
@@ -53,6 +55,12 @@ class PlayerDetailFragment : Fragment() {
           updateUi(playerDetailViewModel.username, checkNotNull(playerDetailViewModel.chessPlayer.value){
             throw IllegalStateException("Player must not be null")
           })
+        }
+
+        binding.fragmentContainer.adapter = ChessGameAdapter(checkNotNull(playerDetailViewModel.games.value?.games)) {
+          findNavController().navigate(
+            PlayerDetailFragmentDirections.actionPlayerDetailFragmentToChessBoardFragment(it)
+          )
         }
       }
     }

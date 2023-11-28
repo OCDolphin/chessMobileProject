@@ -11,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bignerdranch.android.criminalintent.databinding.FragmentChessBoardBinding
 import com.bignerdranch.android.criminalintent.databinding.FragmentPlayerListBinding
+import com.github.bhlangonijr.chesslib.Board
 
 class ChessBoardFragment: Fragment() {
   private var _binding: FragmentChessBoardBinding? = null
@@ -20,6 +21,7 @@ class ChessBoardFragment: Fragment() {
     }
 
   private val args: ChessBoardFragmentArgs by navArgs()
+  private val board: Board? = null
 
   private val chessBoardViewModel: ChessBoardViewModel by viewModels() {
     ChessBoardViewModelFactory(args.game)
@@ -36,6 +38,6 @@ class ChessBoardFragment: Fragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
       super.onViewCreated(view, savedInstanceState)
-
+      board?.loadFromFen(args.game.fen)
   }
 }

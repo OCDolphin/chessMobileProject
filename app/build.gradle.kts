@@ -5,6 +5,8 @@ plugins {
     id("androidx.navigation.safeargs")
     id("kotlin-parcelize")
 }
+repositories {
+}
 
 android {
     namespace = "com.bignerdranch.android.criminalintent"
@@ -42,14 +44,10 @@ android {
 }
 
 dependencies {
-
-
-  // retrofit
-
-  implementation("com.squareup.retrofit2:retrofit:2.9.0")
-
-  // GSON
-
+    implementation("com.github.bhlangonijr:chesslib:1.3.3")
+    // retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    // GSON
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation("androidx.core:core-ktx:1.9.0")
