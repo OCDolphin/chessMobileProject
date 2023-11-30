@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -43,7 +44,7 @@ class PlayerDetailFragment : Fragment() {
   ): View {
     _binding =
       FragmentPlayerDetailBinding.inflate(inflater, container, false)
-    binding.fragmentContainer.layoutManager = GridLayoutManager(context, 3)
+    binding.playerGamesRecycler.layoutManager = GridLayoutManager(context, 3)
     return binding.root
   }
 
@@ -57,7 +58,7 @@ class PlayerDetailFragment : Fragment() {
           })
         }
 
-        binding.fragmentContainer.adapter = ChessGameAdapter(checkNotNull(playerDetailViewModel.games.value?.games)) {
+        binding.playerGamesRecycler.adapter = ChessGameAdapter(checkNotNull(playerDetailViewModel.games.value?.games)) {
           findNavController().navigate(
             PlayerDetailFragmentDirections.actionPlayerDetailFragmentToChessBoardFragment(it)
           )
@@ -74,6 +75,7 @@ class PlayerDetailFragment : Fragment() {
   private fun updateUi(username: String, chessPlayer: ChessPlayerResult) {
 
     binding.apply {
+      playerUsernameTextview.setText(username)
       if (chessPlayer.chess_daily != null) {
         if (chessPlayer.chess_daily.last != null) {
           if (chessPlayer.chess_daily.last.date != null) {
@@ -86,7 +88,6 @@ class PlayerDetailFragment : Fragment() {
             chessDailyLastRdTextview.setText(chessPlayer.chess_daily.last.rd.toString())
           }
         }
-
         if(chessPlayer.chess_daily.best != null) {
           if (chessPlayer.chess_daily.best.date != null) {
             chessDailyBestDateTextview.setText(chessPlayer.chess_daily.best.date.toString())
@@ -98,6 +99,23 @@ class PlayerDetailFragment : Fragment() {
             chessDailyBestUrlTextview.setText(chessPlayer.chess_daily.best.game)
           }
         }
+        if(chessPlayer.chess_daily.record != null) {
+          if (chessPlayer.chess_daily.record.win != null) {
+            chessDailyRecordWinsTextview.setText(chessPlayer.chess_daily.record.win.toString())
+          }
+          if (chessPlayer.chess_daily.record.loss != null) {
+            chessDailyRecordLossesTextview.setText(chessPlayer.chess_daily.record.loss.toString())
+          }
+          if (chessPlayer.chess_daily.record.time_per_move != null) {
+            chessDailyRecordMoveTimeTextview.setText(chessPlayer.chess_daily.record.time_per_move.toString())
+          }
+          if (chessPlayer.chess_daily.record.timeout_percent != null){
+            chessDailyRecordTimeoutPercentTextview.setText(chessPlayer.chess_daily.record.timeout_percent.toString())
+          }
+        }
+      }
+      else{
+        chessDailyLayout.visibility = View.GONE
       }
       if (chessPlayer.chess960_daily != null) {
         if (chessPlayer.chess960_daily.last != null) {
@@ -124,6 +142,12 @@ class PlayerDetailFragment : Fragment() {
           }
         }
       }
+      else{
+        chessDaily960Layout.visibility = View.GONE
+      }
+//      if(playerDetailViewModel.games.value.isNullorEmpty()){
+//        recentGamesTextview.visibility = View.GONE
+//      }
     }
   }
 }

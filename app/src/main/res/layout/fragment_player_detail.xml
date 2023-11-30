@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,6 +12,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/player_username_textview"
         android:text="@string/player_title_label"
         android:textAppearance="?attr/textAppearanceHeadline3" />
 
@@ -19,11 +23,12 @@
         android:layout_height="2dp"
         android:background="#c0c0c0"/>
 
-<!--This is JUST the daily stats-->
+<!--daily stats-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/chess_daily_layout">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -187,7 +192,7 @@
             android:text="@string/time_per_move"
             android:paddingLeft="70dp" />
         <TextView
-            android:id="@+id/chess_daily_record_movetime_textview"
+            android:id="@+id/chess_daily_record_move_time_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -203,7 +208,7 @@
             android:text="@string/timeout_percent"
             android:paddingLeft="70dp" />
         <TextView
-            android:id="@+id/chess_daily_record_timeoutpercent_textview"
+            android:id="@+id/chess_daily_record_timeout_percent_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -211,11 +216,12 @@
     </LinearLayout>
     </LinearLayout>
 
-<!--This is JUST gonna be daily 960-->
+<!--daily 960 stats-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/chessDaily960Layout">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -403,13 +409,22 @@
         </LinearLayout>
     </LinearLayout>
 
+<!--Games List-->
+
+  <TextView
+      android:id="@+id/recent_games_textview"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/player_games"
+      android:textAppearance="?attr/textAppearanceHeadline5"/>
   <androidx.recyclerview.widget.RecyclerView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_container"
+    android:id="@+id/player_games_recycler"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:name="com.bignerdranch.android.criminalintent.GameDisplayFragment"
     tools:context=".MainActivity" />
 
 </LinearLayout>
+</ScrollView>

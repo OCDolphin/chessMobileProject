@@ -8,15 +8,19 @@ import com.bignerdranch.android.criminalintent.api.GameResult
 import com.bignerdranch.android.criminalintent.api.GamesResult
 import com.bignerdranch.android.criminalintent.databinding.GridItemGameBinding
 import com.bignerdranch.android.criminalintent.databinding.GridItemSquareBinding
+import java.text.SimpleDateFormat
 
 class ChessGameHolder(
   private val binding: GridItemGameBinding
 ): RecyclerView.ViewHolder(binding.root) {
   fun bind(game: GameResult, onGameClicked: (GameResult) -> Unit) {
     binding.gameThumbnailPlayers.setText("[${game.white.username}] vs. [${game.black.username}]")
-    binding.gameThumbnailSiteDate.setText(
-      "Just happy to be here"
-    )
+    if(game.startTime != null){
+      val dateFormat = SimpleDateFormat("MM/DD/YY")
+      val dateString = dateFormat.format(game.startTime)
+      binding.gameThumbnailSiteDate.setText(dateString)
+    }
+
   }
 }
 

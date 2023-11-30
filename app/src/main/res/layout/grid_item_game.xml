@@ -3,7 +3,7 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:id="@+id/game_thumbnail"
   android:layout_width="match_parent"
-  android:layout_height="match_parent">
+  android:layout_height="wrap_content">
 
   <TextView
     android:id="@+id/game_thumbnail_players"
@@ -19,6 +19,8 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:text="N/A 0000.00.00"
+      app:layout_constraintTop_toBottomOf="@id/game_thumbnail_site_date"
+      app:layout_constraintBottom_toBottomOf="parent"
     />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

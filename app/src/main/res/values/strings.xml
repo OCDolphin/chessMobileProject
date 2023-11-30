@@ -27,4 +27,6 @@
     <string name="draws">Draws:\t</string>
     <string name="next_move">Next Move</string>
     <string name="prev_move">Prev Move</string>
+    <string name="player_by_rank">Players by Rank: GM</string>
+    <string name="player_games">Recent games:</string>
 </resources>

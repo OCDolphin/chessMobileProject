@@ -35,7 +35,7 @@ class PlayerDetailViewModel(val username: String) : ViewModel() {
     onFinished()
   }
 
-  suspend fun getPlayerGames(username: String){
+  private suspend fun getPlayerGames(username: String){
     var current = checkNotNull(api.getPlayerCurrentGames(username).body()) {
       Log.d(TAG, "Failed to get player: [${username}]")
       "Can't find current games from player: [${username}]"
@@ -55,7 +55,7 @@ class PlayerDetailViewModel(val username: String) : ViewModel() {
     Log.d(TAG, "Got games from user: [%${username}]:[${_games.value}]")
   }
 
-  suspend fun getPlayerStats(username: String) {
+  private suspend fun getPlayerStats(username: String) {
     val result = checkNotNull(api.getPlayerByName(username).body()) {
       Log.d(TAG, "Failed to get player: [${username}]")
       "Can't find user with name ${username}"
