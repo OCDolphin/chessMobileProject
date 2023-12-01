@@ -1,5 +1,6 @@
 package com.bignerdranch.android.criminalintent
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -65,6 +66,11 @@ class PlayerDetailFragment : Fragment() {
         }
       }
     }
+  }
+
+  public fun startBrowserIntent(url: String){
+    val intent = Intent(Intent.ACTION_VIEW)
+    startActivity(intent)
   }
 
   override fun onDestroyView() {
