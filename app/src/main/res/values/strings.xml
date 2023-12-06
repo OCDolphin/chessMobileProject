@@ -29,4 +29,7 @@
     <string name="prev_move">Prev Move</string>
     <string name="player_by_rank">Players by Rank: GM</string>
     <string name="player_games">Recent games:</string>
+    <string name="rapid_daily_label">Chess Rapid Stats:</string>
+    <string name="bullet_label">Chess Bullet Stats:</string>
+    <string name="blitz_label">Chess Blitz Stats:</string>
 </resources>
