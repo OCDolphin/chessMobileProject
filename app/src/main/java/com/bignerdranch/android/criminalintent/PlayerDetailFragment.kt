@@ -1,5 +1,6 @@
 package com.bignerdranch.android.criminalintent
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -21,6 +22,7 @@ import com.github.bhlangonijr.chesslib.Board
 import kotlinx.coroutines.launch
 import java.lang.IllegalStateException
 import java.text.DateFormat
+import kotlinx.coroutines.flow.MutableStateFlow
 
 private const val TAG = "PlayerDetailFragment"
 class PlayerDetailFragment : Fragment() {
@@ -65,6 +67,11 @@ class PlayerDetailFragment : Fragment() {
         }
       }
     }
+  }
+
+  public fun startBrowserIntent(url: String){
+    val intent = Intent(Intent.ACTION_VIEW)
+    startActivity(intent)
   }
 
   override fun onDestroyView() {
@@ -141,13 +148,126 @@ class PlayerDetailFragment : Fragment() {
             chessDaily960BestUrlTextview.setText(chessPlayer.chess960_daily.best.game)
           }
         }
+        if(chessPlayer.chess960_daily.record != null) {
+          if (chessPlayer.chess960_daily.record.win != null) {
+            chessDaily960RecordWinsTextview.setText(chessPlayer.chess960_daily.record.win.toString())
+          }
+          if (chessPlayer.chess960_daily.record.loss != null) {
+            chessDaily960RecordLossesTextview.setText(chessPlayer.chess960_daily.record.loss.toString())
+          }
+        }
       }
       else{
         chessDaily960Layout.visibility = View.GONE
       }
-//      if(playerDetailViewModel.games.value.isNullorEmpty()){
-//        recentGamesTextview.visibility = View.GONE
-//      }
+      if (chessPlayer.chess_rapid != null) {
+        if (chessPlayer.chess_rapid.last != null) {
+          if (chessPlayer.chess_rapid.last.date != null) {
+            chessRapidLastDateTextview.setText(chessPlayer.chess_rapid.last.date.toString())
+          }
+          if (chessPlayer.chess_rapid.last.rating != null) {
+            chessRapidLastRatingTextview.setText(chessPlayer.chess_rapid.last.rating.toString())
+          }
+          if (chessPlayer.chess_rapid.last.rd != null) {
+            chessRapidLastRdTextview.setText(chessPlayer.chess_rapid.last.rd.toString())
+          }
+        }
+
+        if (chessPlayer.chess_rapid.best != null) {
+          if (chessPlayer.chess_rapid.best.date != null) {
+            chessRapidBestDateTextview.setText(chessPlayer.chess_rapid.best.date.toString())
+          }
+          if (chessPlayer.chess_rapid.best.rating != null) {
+            chessRapidBestRatingTextview.setText(chessPlayer.chess_rapid.best.rating.toString())
+          }
+          if (chessPlayer.chess_rapid.best.game != null) {
+            chessRapidBestUrlTextview.setText(chessPlayer.chess_rapid.best.game)
+          }
+        }
+        if(chessPlayer.chess_rapid.record != null) {
+          if (chessPlayer.chess_rapid.record.win != null) {
+            chessRapidRecordWinsTextview.setText(chessPlayer.chess_rapid.record.win.toString())
+          }
+          if (chessPlayer.chess_rapid.record.loss != null) {
+            chessRapidRecordLossesTextview.setText(chessPlayer.chess_rapid.record.loss.toString())
+          }
+        }
+      }
+      else{
+        chessRapidLayout.visibility = View.GONE
+      }
+      if (chessPlayer.chess_bullet != null) {
+        if (chessPlayer.chess_bullet.last != null) {
+          if (chessPlayer.chess_bullet.last.date != null) {
+            chessBulletLastDateTextview.setText(chessPlayer.chess_bullet.last.date.toString())
+          }
+          if (chessPlayer.chess_bullet.last.rating != null) {
+            chessBulletLastRatingTextview.setText(chessPlayer.chess_bullet.last.rating.toString())
+          }
+          if (chessPlayer.chess_bullet.last.rd != null) {
+            chessBulletLastRdTextview.setText(chessPlayer.chess_bullet.last.rd.toString())
+          }
+        }
+
+        if (chessPlayer.chess_bullet.best != null) {
+          if (chessPlayer.chess_bullet.best.date != null) {
+            chessBulletBestDateTextview.setText(chessPlayer.chess_bullet.best.date.toString())
+          }
+          if (chessPlayer.chess_bullet.best.rating != null) {
+            chessBulletBestRatingTextview.setText(chessPlayer.chess_bullet.best.rating.toString())
+          }
+          if (chessPlayer.chess_bullet.best.game != null) {
+            chessBulletBestUrlTextview.setText(chessPlayer.chess_bullet.best.game)
+          }
+        }
+        if(chessPlayer.chess_bullet.record != null) {
+          if (chessPlayer.chess_bullet.record.win != null) {
+            chessBulletRecordWinsTextview.setText(chessPlayer.chess_bullet.record.win.toString())
+          }
+          if (chessPlayer.chess_bullet.record.loss != null) {
+            chessBulletRecordLossesTextview.setText(chessPlayer.chess_bullet.record.loss.toString())
+          }
+        }
+      }
+      else{
+        chessBulletLayout.visibility = View.GONE
+      }
+      if (chessPlayer.chess_blitz != null) {
+        if (chessPlayer.chess_blitz.last != null) {
+          if (chessPlayer.chess_blitz.last.date != null) {
+            chessBlitzLastDateTextview.setText(chessPlayer.chess_blitz.last.date.toString())
+          }
+          if (chessPlayer.chess_blitz.last.rating != null) {
+            chessBlitzLastRatingTextview.setText(chessPlayer.chess_blitz.last.rating.toString())
+          }
+          if (chessPlayer.chess_blitz.last.rd != null) {
+            chessBlitzLastRdTextview.setText(chessPlayer.chess_blitz.last.rd.toString())
+          }
+        }
+
+        if (chessPlayer.chess_blitz.best != null) {
+          if (chessPlayer.chess_blitz.best.date != null) {
+            chessBlitzBestDateTextview.setText(chessPlayer.chess_blitz.best.date.toString())
+          }
+          if (chessPlayer.chess_blitz.best.rating != null) {
+            chessBlitzBestRatingTextview.setText(chessPlayer.chess_blitz.best.rating.toString())
+          }
+          if (chessPlayer.chess_blitz.best.game != null) {
+            chessBlitzBestUrlTextview.setText(chessPlayer.chess_blitz.best.game)
+          }
+        }
+        if(chessPlayer.chess_blitz.record != null) {
+          if (chessPlayer.chess_blitz.record.win != null) {
+            chessBlitzRecordWinsTextview.setText(chessPlayer.chess_blitz.record.win.toString())
+          }
+          if (chessPlayer.chess_blitz.record.loss != null) {
+            chessBlitzRecordLossesTextview.setText(chessPlayer.chess_blitz.record.loss.toString())
+          }
+        }
+      }
+      else{
+        chessBlitzLayout.visibility = View.GONE
+      }
     }
   }
 }

@@ -26,7 +26,6 @@ class PlayerDetailViewModel(val username: String) : ViewModel() {
 
   private val _games: MutableStateFlow<GamesResult?> = MutableStateFlow(null)
   val games: StateFlow<GamesResult?> = _games.asStateFlow()
-
   private val api = ApiHelper.getInstance().create<ChessApi>()
 
   suspend fun init(onFinished: () -> Unit) {
@@ -51,8 +50,8 @@ class PlayerDetailViewModel(val username: String) : ViewModel() {
 
     current.games = current.games + monthlyArchive.games
     _games.value = current
-
-    Log.d(TAG, "Got games from user: [%${username}]:[${_games.value}]")
+    val gamesString = _games.value.toString()
+    Log.d(TAG, "Got games from user: [%${username}]:[${gamesString}]")
   }
 
   private suspend fun getPlayerStats(username: String) {
